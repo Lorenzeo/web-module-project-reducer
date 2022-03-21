@@ -6,7 +6,7 @@ import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 import reducer, {initialState} from '../reducers'
 // import { addOne } from '../actions';
-import {applyNumber, changeOperation, clearDisplay} from '../actions';
+import {applyNumber, changeOperation, clearDisplay, memoryPlus, memoryRecall, memoryClear} from '../actions';
 
 
 function App() {
@@ -15,6 +15,15 @@ function App() {
   // const oneClick = () =>{
   //   dispatch(addOne());
   // }
+  const memPlus = () =>{
+    dispatch(memoryPlus(memory))
+  }
+  const memRecall = () =>{
+    dispatch(memoryRecall(memory))
+  }
+  const memClear = () =>{
+    dispatch(memoryClear(memory))
+  }
   const clearDisp = () =>{
     dispatch(clearDisplay());
   }
@@ -42,9 +51,9 @@ function App() {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton value={"M+"} onClick={()=>{memPlus(memory)}}/>
+              <CalcButton value={"MR"} onClick={()=>{memRecall(memory)}}/>
+              <CalcButton value={"MC"} onClick={()=>{memClear(memory)}}/>
             </div>
 
             <div className="row">
