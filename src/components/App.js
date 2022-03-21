@@ -5,16 +5,24 @@ import './App.css';
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 import reducer, {initialState} from '../reducers'
-import { addOne } from '../actions';
-import {applyNumber} from '../actions';
+// import { addOne } from '../actions';
+import {applyNumber, changeOperation, clearDisplay} from '../actions';
+
 
 function App() {
   const [ state, dispatch ] = useReducer(reducer, initialState)
-  const oneClick = () =>{
-    dispatch(addOne());
+
+  // const oneClick = () =>{
+  //   dispatch(addOne());
+  // }
+  const clearDisp = () =>{
+    dispatch(clearDisplay());
   }
-  const applynum = () =>{
-    dispatch(applyNumber())
+  const changeOp = (operation) =>{
+    dispatch(changeOperation(operation));
+  }
+  const applyNum = (number) =>{
+    dispatch(applyNumber(number));
   }
 
   return (
@@ -40,31 +48,31 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={1} onClick={oneClick}/>
-              <CalcButton value={2}/>
-              <CalcButton value={3}/>
+              <CalcButton value={1} onClick={()=>{applyNum(1)}}/>
+              <CalcButton value={2} onClick={()=>{applyNum(2)}}/>
+              <CalcButton value={3} onClick={()=>{applyNum(3)}}/>
             </div>
 
             <div className="row">
-              <CalcButton value={4}/>
-              <CalcButton value={5}/>
-              <CalcButton value={6}/>
+              <CalcButton value={4} onClick={()=>{applyNum(4)}}/>
+              <CalcButton value={5} onClick={()=>{applyNum(5)}}/>
+              <CalcButton value={6} onClick={()=>{applyNum(6)}}/>
             </div>
 
             <div className="row">
-              <CalcButton value={7}/>
-              <CalcButton value={8}/>
-              <CalcButton value={9}/>
+              <CalcButton value={7} onClick={()=>{applyNum(7)}}/>
+              <CalcButton value={8} onClick={()=>{applyNum(8)}}/>
+              <CalcButton value={9} onClick={()=>{applyNum(9)}}/>
             </div>
 
             <div className="row">
-              <CalcButton value={"+"}/>
-              <CalcButton value={"*"}/>
-              <CalcButton value={"-"}/>
+              <CalcButton value={"+"} onClick={()=>{changeOp('+')}}/>
+              <CalcButton value={"*"} onClick={()=>{changeOp('*')}}/>
+              <CalcButton value={"-"} onClick={()=>{changeOp('-')}}/>
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton value={"CE"} onClick={()=>{clearDisp()}}/>
             </div>
 
           </form>
